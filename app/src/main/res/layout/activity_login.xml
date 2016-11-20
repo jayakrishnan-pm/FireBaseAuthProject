@@ -41,8 +41,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:singleLine="true" />
+                    android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -60,8 +59,10 @@
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:singleLine="true" />
+
+                    />
             </android.support.design.widget.TextInputLayout>
+
 
             <Button
                 android:id="@+id/email_sign_in_button"
@@ -71,6 +72,19 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/btn_forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:clickable="true"
+                android:text="@string/txt_forgot_password"
+                style="?android:textAppearanceSmall"
+
+                />
 
             <TextView
                 style="?android:textAppearanceSmall"

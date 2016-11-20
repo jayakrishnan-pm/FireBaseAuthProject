@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1052972020391",
+    "firebase_url": "https://devdeeds-auth.firebaseio.com",
+    "project_id": "devdeeds-auth",
+    "storage_bucket": "devdeeds-auth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1052972020391:android:5f9a2953f7d0e676",
+        "android_client_info": {
+          "package_name": "com.devdeeds.firebaseauth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1052972020391-2tjh1p4pa1phel64r7692d15ij23n8ef.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.devdeeds.firebaseauth",
+            "certificate_hash": "843D6AE537547E213271B6A6085D4F7EA4024B14"
+          }
+        },
+        {
+          "client_id": "1052972020391-4kv7ec7mbq43igfi2p7t8472anhlglsq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIvwKCxM1-a8MrlVlt9D_zVtTy6UyTK8Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1052972020391-4kv7ec7mbq43igfi2p7t8472anhlglsq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

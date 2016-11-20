@@ -34,13 +34,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements OnClickListener {
 
 
-
-    private FirebaseAuth mAuth;
     private static String TAG = "LoginActivity";
-
+    private FirebaseAuth mAuth;
     // UI references.
     private TextInputEditText mEmailView;
     private TextInputEditText mPasswordView;
@@ -48,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     private View mLoginFormView;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private Boolean mAllowNavigation = true;
+    private TextView mBtnForgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         // Set up the login form.
         mEmailView = (TextInputEditText) findViewById(R.id.email);
+        mBtnForgotPassword = (TextView) findViewById(R.id.btn_forgot_password);
 
         mAuth = FirebaseAuth.getInstance();
         mPasswordView = (TextInputEditText) findViewById(R.id.password);
@@ -90,6 +90,9 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+        mBtnForgotPassword.setOnClickListener(this);
+
+
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
@@ -111,15 +114,9 @@ public class LoginActivity extends AppCompatActivity {
                         finish();
                     }
 
-
-
-
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
-
-
-
                 }
                 // ...
             }
@@ -140,7 +137,6 @@ public class LoginActivity extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-
 
 
     /**
@@ -258,6 +254,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View view) {
 
+
+        if (view.getId() == R.id.btn_forgot_password) {
+
+            Intent intent = new Intent(getApplicationContext(), PasswordResetActivity.class);
+            startActivity(intent);
+
+
+        }
+    }
 }
 

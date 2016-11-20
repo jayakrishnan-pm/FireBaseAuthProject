@@ -1,4 +1,4 @@
-package com.devdeeds.firebaseauth;
+package com.devdeeds.firebaseauth.model;
 public class User {
     //email and address string
     private String email;

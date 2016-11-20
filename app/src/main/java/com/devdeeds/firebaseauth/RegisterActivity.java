@@ -5,10 +5,10 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 
 
-
 import android.content.Intent;
 
 
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -68,17 +68,18 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                attemptRegister();
-            }
-        });
+        Button btnRegisterButton = (Button) findViewById(R.id.email_sign_up_button);
+        if (btnRegisterButton != null) {
+            btnRegisterButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    attemptRegister();
+                }
+            });
+        }
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-
 
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -93,11 +94,25 @@ public class RegisterActivity extends AppCompatActivity {
                     if (mAllowNavigation) {
                         mAllowNavigation = false;
 
-                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
+                        //  Section checks email verified or not /////
 
+
+                        if (user.isEmailVerified()) {
+
+                            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                            startActivity(intent);
+                            finish();
+
+                        } else {
+                            user.sendEmailVerification();
+                            Toast.makeText(getApplicationContext(), R.string.msg_email_address_not_verified, Toast.LENGTH_LONG).show();
+                        }
+
+
+                        //  end of checking....... /////
+
+
+                    }
 
 
                 } else {
@@ -105,14 +120,11 @@ public class RegisterActivity extends AppCompatActivity {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
 
 
-
                 }
                 // ...
             }
         };
     }
-
-
 
 
     /**
@@ -144,6 +156,14 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         // Check for a valid password, if the user entered one.
+
+        if (TextUtils.isEmpty(password)) {
+            mPasswordView.setError(getString(R.string.error_field_required));
+            focusView = mPasswordView;
+            cancel = true;
+        }
+
+
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
@@ -177,20 +197,17 @@ public class RegisterActivity extends AppCompatActivity {
                             Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
 
 
-
                             // If sign in fails, display a message to the user. If sign in succeeds
                             // the auth state listener will be notified and logic to handle the
                             // signed in user can be handled in the listener.
                             if (!task.isSuccessful()) {
-                                Toast.makeText(RegisterActivity.this, "Authentication failed.",
+                                Toast.makeText(RegisterActivity.this, "Authentication failed." ,
                                         Toast.LENGTH_SHORT).show();
                             }
 
                             // ...
                         }
                     });
-
-
 
 
         }
@@ -257,8 +274,6 @@ public class RegisterActivity extends AppCompatActivity {
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
-
-
 
 
 }
